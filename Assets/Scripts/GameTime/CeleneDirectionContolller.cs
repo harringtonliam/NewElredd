@@ -34,7 +34,7 @@ namespace RPG.GameTime
             Vector3 sunRotation = new Vector3(newXRotation, 0f, 0f);
 
             celeneDirectionalLight.transform.eulerAngles = sunRotation;
-            Debug.Log("CeleneDirectionContolller new x rotation " + celeneDirectionalLight.transform.rotation.x.ToString());
+
 
         }
     }

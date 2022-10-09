@@ -11,6 +11,7 @@ namespace RPG.GameTime
         [SerializeField] float hourLenghtInRealMinutes = 10f;
         [SerializeField] int hoursInDay = 24;
         [SerializeField] int startHour = 10;
+        [SerializeField] int startDayInMonth = 1;
         [SerializeField] int startYear = 579;
         [SerializeField] int daysInMonth = 28;
         [SerializeField] Months startMonth;
@@ -48,12 +49,12 @@ namespace RPG.GameTime
         {
             currentHour = startHour;
             currentDayOfWeek = 0;
-            currentDayOfMonth = 1;
-            currentDayOfMonth = 1;
+            currentDayOfMonth = startDayInMonth;
             currentYear = startYear;
             currentMonth = GetStartMonth();
 
             TriggerAllEventActions();
+            Debug.Log("GameTimeContoller  start " + CurrentYear + " " + GetCurrentMonth() + " " + CurrentDayOfMonth + " " + GetCurrentDayOfWeek() + " " + CurrentHour);
         }
 
 

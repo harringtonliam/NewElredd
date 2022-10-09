@@ -24,18 +24,13 @@ namespace RPG.GameTime
         private void CalculateSunDirection()
         {
             if (sunDirectionalLight == null) return;
-
             float newXRotation = (gameTimeContoller.GetHourExact() * sunRotationMultiplier) + sunRotationOffset;
             if (newXRotation >= maxRotation)
             {
                 newXRotation = 0f;
             }
-
             Vector3 sunRotation = new Vector3(newXRotation, 0f, 0f);
-
             sunDirectionalLight.transform.eulerAngles = sunRotation;
-            Debug.Log("SunDirectionController new x rotation " + sunDirectionalLight.transform.rotation.x.ToString());
-
         }
 
     }
