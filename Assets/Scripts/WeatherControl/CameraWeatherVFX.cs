@@ -29,8 +29,11 @@ namespace RPG.WeatherControl
         {
             foreach (var weatherVFX in weatherVFXes)
             {
-                Debug.Log("CameraWeatherVFX " + weatherVFX.weather + " " + weatherContoller.CurrentWeather);
                 weatherVFX.vfx.SetActive(false);
+            }
+
+            foreach (var weatherVFX in weatherVFXes)
+            {
                 if (weatherContoller.CurrentWeather == weatherVFX.weather)
                 {
                     weatherVFX.vfx.SetActive(true);

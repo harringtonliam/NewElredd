@@ -52,8 +52,8 @@ namespace RPG.WeatherControl
             {
                 int randomWeatherDiceRoll = dice.RollDice(100, 1);
                 Weathers newWeather = weatherTable.GetWeather(gameTimeContoller.GetCurrentMonth(), randomWeatherDiceRoll);
-                Debug.Log("Generate Weather " + newWeather);
                 currentWeatherDurationHours = dice.RollDice(4, 1);
+                Debug.Log("Generate Weather " + newWeather + " for hours: " + currentWeatherDurationHours);
                 currentWeatherHourSoFar = 0;
                 currentWeather = newWeather;
                 SetWeatherEffect(newWeather);
