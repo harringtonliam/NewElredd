@@ -84,6 +84,16 @@ namespace RPG.Control
             currentWaypointIndex = 0;
         }
 
+        public void SetWayPointPauseTime(float pauseTime)
+        {
+            waypointPauseTime = pauseTime;
+        }
+
+        public void SetPatrolSpeedFraction(float speedFraction)
+        {
+            patrolSpeedFraction = speedFraction;
+        }
+
         public void SetCombatTarget(GameObject target)
         {
             combatTargetGameObject = target;

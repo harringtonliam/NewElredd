@@ -22,7 +22,6 @@ namespace RPG.GameTime
 
         private void SetMoonIntensity()
         {
-            Debug.Log("Moon Intensity Month " + IsVisibleThisMonth() + " day " + IsVisibleThisDay());
             if (IsVisibleThisMonth() && IsVisibleThisDay())
             {
                 moon.intensity = maxIntensity;
@@ -52,7 +51,6 @@ namespace RPG.GameTime
 
         private bool IsVisibleThisDay()
         {
-            Debug.Log("Moon Intensity day " +gameTimeContoller.CurrentDayOfMonth);
             if (gameTimeContoller.CurrentDayOfMonth >= dayVisibleFrom && gameTimeContoller.CurrentDayOfMonth <= dayVisibleTo)
             {
                 return true;
