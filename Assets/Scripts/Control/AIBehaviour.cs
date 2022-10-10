@@ -48,51 +48,14 @@ namespace RPG.Control
 
         private void CheckBehaviour()
         {
+            var sortedBehaviours = behaviourDescriptions.OrderBy(m => m.appliesToAllMonths).ThenByDescending(w => w.appliesToSpecificWeekDay).ThenBy(d => d.appliesToAllDays).ToArray();
 
-            var sorted = behaviourDescriptions.OrderBy(m => m.appliesToAllMonths).ThenByDescending(w => w.appliesToSpecificWeekDay).ThenBy(d => d.appliesToAllDays).ToArray();
-
-            for (int i = 0; i < sorted.Length; i++)
+            for (int i = 0; i < sortedBehaviours.Length; i++)
             {
-                Debug.Log(" sprted array " + i + " " + sorted[i].Print());
-            }
-
-            BehaviourDescription[] specificMonthAndDay = behaviourDescriptions.Where(b => !b.appliesToAllDays  && !b.appliesToAllMonths).ToArray();
-            Debug.Log(" Specfic Month and Day len " + specificMonthAndDay.Length.ToString());
-            foreach (var behaviourDescription in specificMonthAndDay)
-            {
-                Debug.Log("Checking Specfic Month and Day");
-                if (BehaviourApplies(behaviourDescription))
+                Debug.Log(" sorted array " + i + " " + sortedBehaviours[i].Print()); 
+                if (BehaviourApplies(sortedBehaviours[i]))
                 {
-                    ApplyBehaviour(behaviourDescription);
-                    return;
-                }
-            }
-            BehaviourDescription[] specificMonthAndAllDays = behaviourDescriptions.Where(b => b.appliesToAllDays && !b.appliesToAllMonths).ToArray();
-            foreach (var behaviourDescription in specificMonthAndAllDays)
-            {
-                if (BehaviourApplies(behaviourDescription))
-                {
-                    ApplyBehaviour(behaviourDescription);
-                    return;
-                }
-            }
-            BehaviourDescription[] allMonthsAndSpecificDays = behaviourDescriptions.Where(b => !b.appliesToAllDays && b.appliesToAllMonths).ToArray();
-            Debug.Log(" All Month and Specfic Day len " + specificMonthAndDay.Length.ToString());
-            foreach (var behaviourDescription in specificMonthAndAllDays)
-            {
-                if (BehaviourApplies(behaviourDescription))
-                {
-                    ApplyBehaviour(behaviourDescription);
-                    return;
-                }
-            }
-
-            BehaviourDescription[] allMonthsAndAllDays = behaviourDescriptions.Where(b => b.appliesToAllDays && b.appliesToAllMonths).ToArray();
-            foreach (var behaviourDescription in behaviourDescriptions)
-            {
-                if (BehaviourApplies(behaviourDescription))
-                {
-                    ApplyBehaviour(behaviourDescription);
+                    ApplyBehaviour(sortedBehaviours[i]);
                     return;
                 }
             }
@@ -112,6 +75,11 @@ namespace RPG.Control
             if(!behaviourDescription.appliesToAllMonths && behaviourDescription.month != gameTimeContoller.GetCurrentMonth())
             {
                 Debug.Log("Failed Month check " + behaviourDescription.appliesToAllMonths + " " + behaviourDescription.month + " " + gameTimeContoller.GetCurrentMonth());
+                useThisBehavior = false;
+            }
+            if (behaviourDescription.appliesToSpecificWeekDay && behaviourDescription.weekDay != gameTimeContoller.GetCurrentDayOfWeek())
+            {
+                Debug.Log("Failed weekday check " + behaviourDescription.appliesToSpecificWeekDay + " " + behaviourDescription.weekDay + " " + gameTimeContoller.GetCurrentDayOfWeek());
                 useThisBehavior = false;
             }
             if (!behaviourDescription.appliesToAllDays && (behaviourDescription.dayFrom < gameTimeContoller.CurrentDayOfMonth  || gameTimeContoller.CurrentDayOfMonth >behaviourDescription.dayTo))
