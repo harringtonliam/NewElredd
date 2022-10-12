@@ -52,7 +52,7 @@ namespace RPG.Control
 
             for (int i = 0; i < sortedBehaviours.Length; i++)
             {
-                Debug.Log(" sorted array " + i + " " + sortedBehaviours[i].Print()); 
+                //Debug.Log(" sorted array " + i + " " + sortedBehaviours[i].Print()); 
                 if (BehaviourApplies(sortedBehaviours[i]))
                 {
                     ApplyBehaviour(sortedBehaviours[i]);
@@ -74,22 +74,21 @@ namespace RPG.Control
 
             if(!behaviourDescription.appliesToAllMonths && behaviourDescription.month != gameTimeContoller.GetCurrentMonth())
             {
-                Debug.Log("Failed Month check " + behaviourDescription.appliesToAllMonths + " " + behaviourDescription.month + " " + gameTimeContoller.GetCurrentMonth());
                 useThisBehavior = false;
             }
             if (behaviourDescription.appliesToSpecificWeekDay && behaviourDescription.weekDay != gameTimeContoller.GetCurrentDayOfWeek())
             {
-                Debug.Log("Failed weekday check " + behaviourDescription.appliesToSpecificWeekDay + " " + behaviourDescription.weekDay + " " + gameTimeContoller.GetCurrentDayOfWeek());
+                //Debug.Log("Failed weekday check " + behaviourDescription.appliesToSpecificWeekDay + " " + behaviourDescription.weekDay + " " + gameTimeContoller.GetCurrentDayOfWeek());
                 useThisBehavior = false;
             }
             if (!behaviourDescription.appliesToAllDays && (behaviourDescription.dayFrom < gameTimeContoller.CurrentDayOfMonth  || gameTimeContoller.CurrentDayOfMonth >behaviourDescription.dayTo))
             {
-                Debug.Log("Failed day check " + behaviourDescription.appliesToAllDays + " " + behaviourDescription.dayFrom + " " + behaviourDescription.dayTo + " " + gameTimeContoller.CurrentDayOfMonth);
+                //Debug.Log("Failed day check " + behaviourDescription.appliesToAllDays + " " + behaviourDescription.dayFrom + " " + behaviourDescription.dayTo + " " + gameTimeContoller.CurrentDayOfMonth);
                 useThisBehavior = false;
             }
             if (behaviourDescription.hourFrom < gameTimeContoller.CurrentHour|| gameTimeContoller.CurrentHour > behaviourDescription.hourTo)
             {
-                Debug.Log("Failed hour check "  + " " + behaviourDescription.hourFrom + " " + behaviourDescription.hourTo + " " + gameTimeContoller.CurrentHour);
+                //Debug.Log("Failed hour check "  + " " + behaviourDescription.hourFrom + " " + behaviourDescription.hourTo + " " + gameTimeContoller.CurrentHour);
                 useThisBehavior = false;
             }
 
