@@ -125,12 +125,11 @@ namespace RPG.Control
         {
 
             Vector3 target;
-            bool hashit = RaycastNavMesh(out target); ;
+            bool hashit = RaycastNavMesh(out target);
+            Debug.Log("Palyer contoller  InteractWithMovement hashit: " + hashit);
             if (hashit)
             {
                 if (!GetComponent<Mover>().CanMoveTo(target)) return false;
-
-
                 if (Input.GetMouseButton(0))
                 {
                     mover.StartMovementAction(target, 1f); ;
@@ -139,7 +138,6 @@ namespace RPG.Control
                 return true;
             }
             return false;
-
         }
 
         private bool RaycastNavMesh(out Vector3 target)

@@ -245,16 +245,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4890892346126784323, guid: dc9e9b5ac38c7e24e8f111585ee2ba2f, type: 3}
   m_PrefabInstance: {fileID: 8002195624554637621}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &3229769403555118711 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4890892346126784322, guid: dc9e9b5ac38c7e24e8f111585ee2ba2f, type: 3}
-  m_PrefabInstance: {fileID: 8002195624554637621}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &3229769405268184516 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4890892344350270705, guid: dc9e9b5ac38c7e24e8f111585ee2ba2f, type: 3}
-  m_PrefabInstance: {fileID: 8002195624554637621}
-  m_PrefabAsset: {fileID: 0}
 --- !u!136 &5952742263575907262
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -427,25 +417,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorMappings:
   - cursorType: 0
-    texture2D: {fileID: 2800000, guid: 21628736160fcc9488493401da3ef621, type: 3}
+    texture2D: {fileID: 2800000, guid: 31e8353efd9f6a14388ba6dc29876b41, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 1
-    texture2D: {fileID: 2800000, guid: 44a99ee545fd8ba46a452b12c1f9378b, type: 3}
+    texture2D: {fileID: 2800000, guid: 1bb1ac698c7ca694c8150857294e757a, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 2
-    texture2D: {fileID: 2800000, guid: 1e1ecf843f705b34ab304dff88b037c1, type: 3}
+    texture2D: {fileID: 2800000, guid: 267f629958a691c4eba0ad20da4e9bc4, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 3
-    texture2D: {fileID: 2800000, guid: 8ea795c067613354898068091ffc7130, type: 3}
+    texture2D: {fileID: 2800000, guid: cc8e2339ec0761d4ba1aa3a3460c250f, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 4
-    texture2D: {fileID: 2800000, guid: f8c873f1e53e83f4aabf342d6be1dfc3, type: 3}
+    texture2D: {fileID: 2800000, guid: f42c4bb11f584df40951cf4832f8cc82, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 5
     texture2D: {fileID: 2800000, guid: 96d4bfdb0d6d8c042bf8fccf6524d239, type: 3}
     hotspot: {x: 0, y: 0}
   - cursorType: 6
-    texture2D: {fileID: 2800000, guid: 7f6c6fdab50f1054c9820b737360db07, type: 3}
+    texture2D: {fileID: 2800000, guid: 27db846ca8711834d87aaeff71804870, type: 3}
     hotspot: {x: 0, y: 0}
   raycastRadius: 0.5
 --- !u!114 &8300333878504395852
@@ -486,3 +476,13 @@ MonoBehaviour:
   - weaponConfig: {fileID: 0}
     number: 0
     isActive: 0
+--- !u!4 &3229769403555118711 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4890892346126784322, guid: dc9e9b5ac38c7e24e8f111585ee2ba2f, type: 3}
+  m_PrefabInstance: {fileID: 8002195624554637621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &3229769405268184516 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4890892344350270705, guid: dc9e9b5ac38c7e24e8f111585ee2ba2f, type: 3}
+  m_PrefabInstance: {fileID: 8002195624554637621}
+  m_PrefabAsset: {fileID: 0}
