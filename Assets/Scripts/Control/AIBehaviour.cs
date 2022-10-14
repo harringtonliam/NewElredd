@@ -11,7 +11,6 @@ namespace RPG.Control
     {
         [SerializeField] BehaviourDescription[] behaviourDescriptions;
 
-
         [System.Serializable]
         public class BehaviourDescription
         {
@@ -49,15 +48,17 @@ namespace RPG.Control
         private void CheckBehaviour()
         {
             var sortedBehaviours = behaviourDescriptions.OrderBy(m => m.appliesToAllMonths).ThenByDescending(w => w.appliesToSpecificWeekDay).ThenBy(d => d.appliesToAllDays).ToArray();
-
             for (int i = 0; i < sortedBehaviours.Length; i++)
             {
-                //Debug.Log(" sorted array " + i + " " + sortedBehaviours[i].Print()); 
+                //Debug.Log("Checking Behaviour sorted array " + i + " " + sortedBehaviours[i].Print()); 
                 if (BehaviourApplies(sortedBehaviours[i]))
                 {
                     ApplyBehaviour(sortedBehaviours[i]);
                     return;
                 }
+
+
+
             }
         }
 
@@ -81,12 +82,12 @@ namespace RPG.Control
                 //Debug.Log("Failed weekday check " + behaviourDescription.appliesToSpecificWeekDay + " " + behaviourDescription.weekDay + " " + gameTimeContoller.GetCurrentDayOfWeek());
                 useThisBehavior = false;
             }
-            if (!behaviourDescription.appliesToAllDays && (behaviourDescription.dayFrom < gameTimeContoller.CurrentDayOfMonth  || gameTimeContoller.CurrentDayOfMonth >behaviourDescription.dayTo))
+            if (!behaviourDescription.appliesToAllDays && (gameTimeContoller.CurrentDayOfMonth  < behaviourDescription.dayFrom || gameTimeContoller.CurrentDayOfMonth > behaviourDescription.dayTo))
             {
                 //Debug.Log("Failed day check " + behaviourDescription.appliesToAllDays + " " + behaviourDescription.dayFrom + " " + behaviourDescription.dayTo + " " + gameTimeContoller.CurrentDayOfMonth);
                 useThisBehavior = false;
             }
-            if (behaviourDescription.hourFrom < gameTimeContoller.CurrentHour|| gameTimeContoller.CurrentHour > behaviourDescription.hourTo)
+            if (gameTimeContoller.CurrentHour < behaviourDescription.hourFrom  || gameTimeContoller.CurrentHour > behaviourDescription.hourTo)
             {
                 //Debug.Log("Failed hour check "  + " " + behaviourDescription.hourFrom + " " + behaviourDescription.hourTo + " " + gameTimeContoller.CurrentHour);
                 useThisBehavior = false;

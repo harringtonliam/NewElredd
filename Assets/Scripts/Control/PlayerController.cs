@@ -126,7 +126,6 @@ namespace RPG.Control
 
             Vector3 target;
             bool hashit = RaycastNavMesh(out target);
-            Debug.Log("Palyer contoller  InteractWithMovement hashit: " + hashit);
             if (hashit)
             {
                 if (!GetComponent<Mover>().CanMoveTo(target)) return false;

@@ -80,8 +80,11 @@ namespace RPG.Control
 
         public void SetPatrolPath(PatrolPath newPatrolPath)
         {
-            patrolPath = newPatrolPath;
-            currentWaypointIndex = 0;
+            if (patrolPath != newPatrolPath)
+            {
+                patrolPath = newPatrolPath;
+                currentWaypointIndex = 0;
+            }
         }
 
         public void SetWayPointPauseTime(float pauseTime)
