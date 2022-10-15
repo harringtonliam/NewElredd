@@ -56,17 +56,20 @@ namespace RPG.Control
                     ApplyBehaviour(sortedBehaviours[i]);
                     return;
                 }
-
-
-
             }
+            ApplyNoBehaviour();
         }
 
         private void ApplyBehaviour(BehaviourDescription behaviourDescription)
         {
-            aIControler.SetPatrolPath(behaviourDescription.patrolPath);
+            aIControler.SetPatrolPath(behaviourDescription.patrolPath, true);
             aIControler.SetPatrolSpeedFraction(behaviourDescription.patrolSpeedFraction);
             aIControler.SetWayPointPauseTime(behaviourDescription.waypointPauseTime);
+        }
+
+        private void ApplyNoBehaviour()
+        {
+            aIControler.SetPatrolPath(null, false);
         }
 
         private bool BehaviourApplies(BehaviourDescription behaviourDescription)

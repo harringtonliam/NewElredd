@@ -15,6 +15,7 @@ namespace RPG.Control
         [SerializeField] float chaseDistance = 5f;
         [SerializeField] float suspicionTime = 2f;
         [SerializeField] float aggrevationCoolDownTime = 2f;
+        [SerializeField] bool usePatrolPath = true;
         [SerializeField] PatrolPath patrolPath;
         [SerializeField] float waypointTolerance = 1f;
         [SerializeField] float waypointPauseTime = 2f;
@@ -78,8 +79,9 @@ namespace RPG.Control
             chaseDistance = newChaseDistance;
         }
 
-        public void SetPatrolPath(PatrolPath newPatrolPath)
+        public void SetPatrolPath(PatrolPath newPatrolPath, bool useNewPatrolPath)
         {
+            usePatrolPath = useNewPatrolPath;
             if (patrolPath != newPatrolPath)
             {
                 patrolPath = newPatrolPath;
@@ -105,6 +107,7 @@ namespace RPG.Control
         private bool InteractWithPatrolPath()
         {
             if (patrolPath == null) return false;
+            if (!usePatrolPath) return false;
 
             timeAtWaypoint += Time.deltaTime;
 

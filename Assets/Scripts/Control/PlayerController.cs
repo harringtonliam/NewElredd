@@ -90,6 +90,7 @@ namespace RPG.Control
 
         private bool InteractWithComponent()
         {
+
             RaycastHit[] hits = RaycastAllSorted();
             foreach (var hit in hits)
             {

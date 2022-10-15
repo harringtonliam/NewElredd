@@ -250,6 +250,10 @@ PrefabInstance:
       propertyPath: aIRelationship
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4415984554010688448, guid: cc221d81a14e61f459a262652e6c928a, type: 3}
+      propertyPath: waypointTolerance
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5324155772424853717, guid: cc221d81a14e61f459a262652e6c928a, type: 3}
       propertyPath: leftHandTransform
       value: 

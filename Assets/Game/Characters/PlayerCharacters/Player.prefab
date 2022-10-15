@@ -323,6 +323,19 @@ MonoBehaviour:
     number: 0
   - actionItem: {fileID: 0}
     number: 0
+--- !u!114 &1585408087609544649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229769403555118710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72f0a4801efb5cc4690e00af8b9e9a4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateRange: 1
 --- !u!114 &2776090773562456005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +449,9 @@ MonoBehaviour:
     hotspot: {x: 0, y: 0}
   - cursorType: 6
     texture2D: {fileID: 2800000, guid: 27db846ca8711834d87aaeff71804870, type: 3}
+    hotspot: {x: 0, y: 0}
+  - cursorType: 7
+    texture2D: {fileID: 2800000, guid: 9bbd21634a7928446a0003aeaa1a7d1e, type: 3}
     hotspot: {x: 0, y: 0}
   raycastRadius: 0.5
 --- !u!114 &8300333878504395852
