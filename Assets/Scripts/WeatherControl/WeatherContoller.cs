@@ -21,7 +21,7 @@ namespace RPG.WeatherControl
         Dice dice;
         Weathers currentWeather;
 
-        float[] lighySourceStartIntensities;
+        float[] lightSourceStartIntensities;
 
         public event Action weatherHasChanged;
 
@@ -38,10 +38,10 @@ namespace RPG.WeatherControl
 
         private void StoreStartLightSOurceIntensities()
         {
-            lighySourceStartIntensities = new float[lightSources.Length];
+            lightSourceStartIntensities = new float[lightSources.Length];
             for (int i = 0; i < lightSources.Length; i++)
             {
-                lighySourceStartIntensities[i] = lightSources[i].intensity;
+                lightSourceStartIntensities[i] = lightSources[i].intensity;
             }
         }
 
@@ -78,7 +78,8 @@ namespace RPG.WeatherControl
             float newLightIntensityPercentage = weatherDescriptions.GetWeatherEffect(weather).LightIntesityPercentage;
             for (int i = 0; i < lightSources.Length; i++)
             {
-                lightSources[i].intensity = lighySourceStartIntensities[i] * (newLightIntensityPercentage/100);
+                lightSources[i].intensity = lightSourceStartIntensities[i] * (newLightIntensityPercentage/100);
+                lightSources[i].shadowStrength = weatherDescriptions.GetWeatherEffect(weather).LightShadowStrenght;
             }
         }
     }

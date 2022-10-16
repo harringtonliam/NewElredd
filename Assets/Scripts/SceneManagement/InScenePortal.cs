@@ -19,8 +19,6 @@ namespace RPG.SceneManagement
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("InScenePortal OnTriggerEnter");
-
            if (other.tag == "Player")
             {
                 StartCoroutine(Transition(other.gameObject));

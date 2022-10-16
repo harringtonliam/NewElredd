@@ -9,8 +9,10 @@ namespace RPG.WeatherControl
     {
         [SerializeField] Weathers weather;
         [SerializeField] float lightIntensityPercentage;
+        [SerializeField] float lightShadowStrenght;
         public Weathers Weather { get { return weather; } }
         public float LightIntesityPercentage { get { return lightIntensityPercentage; } }
+        public float LightShadowStrenght { get { return lightShadowStrenght; } }
 
     }
 

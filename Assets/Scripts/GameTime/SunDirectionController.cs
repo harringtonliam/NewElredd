@@ -10,6 +10,7 @@ namespace RPG.GameTime
         [SerializeField] float sunRotationMultiplier = 15f;
         [SerializeField] float sunRotationOffset = -90f;
         [SerializeField] float maxRotation = 359f;
+        [SerializeField] float zRotation = -20f;
 
         GameTimeContoller gameTimeContoller;
 
@@ -29,7 +30,7 @@ namespace RPG.GameTime
             {
                 newXRotation = 0f;
             }
-            Vector3 sunRotation = new Vector3(newXRotation, 0f, 0f);
+            Vector3 sunRotation = new Vector3(newXRotation, 0f, zRotation);
             sunDirectionalLight.transform.eulerAngles = sunRotation;
         }
 

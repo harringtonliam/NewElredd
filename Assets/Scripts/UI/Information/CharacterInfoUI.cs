@@ -12,6 +12,7 @@ namespace RPG.UI.Information
         void Start()
         {
             PlayerCharacter playerCharacter = FindObjectOfType<PlayerCharacter>();
+            if(playerCharacter== null) return;
             GetComponent<PlayerCharacterUI>().SetUp(playerCharacter.PlayerCharacterGameObjects[0]);
         }
     }

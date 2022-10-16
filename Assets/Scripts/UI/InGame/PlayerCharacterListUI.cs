@@ -24,6 +24,7 @@ namespace RPG.UI.InGame
                 Destroy(child.gameObject);
             }
             PlayerCharacter playerCharacter = FindObjectOfType<PlayerCharacter>();
+            if (playerCharacter == null) return;
             foreach (var character in playerCharacter.PlayerCharacterGameObjects)
             {
                 if (playerCharacterUIPrefab != null)

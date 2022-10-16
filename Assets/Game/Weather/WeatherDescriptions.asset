@@ -15,15 +15,22 @@ MonoBehaviour:
   weatherEffects:
   - weather: 0
     lightIntensityPercentage: 110
+    lightShadowStrenght: 1
   - weather: 1
     lightIntensityPercentage: 100
+    lightShadowStrenght: 1
   - weather: 2
     lightIntensityPercentage: 95
+    lightShadowStrenght: 0.5
   - weather: 3
     lightIntensityPercentage: 85
+    lightShadowStrenght: 0
   - weather: 4
     lightIntensityPercentage: 80
+    lightShadowStrenght: 0.25
   - weather: 5
     lightIntensityPercentage: 70
+    lightShadowStrenght: 0
   - weather: 6
     lightIntensityPercentage: 60
+    lightShadowStrenght: 0
