@@ -17,13 +17,20 @@ namespace RPG.SceneManagement
         [SerializeField] InScenePortal destinationPortal;
         [SerializeField] bool playerUsablePortal = true;
 
-        //private void OnTriggerEnter(Collider other)
-        //{
-        //    if (other.tag == "Player")
-        //    {
-        //        StartCoroutine(Transition());
-        //    }
-        //}
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.Log("InScenePortal OnTriggerEnter");
+
+           if (other.tag == "Player")
+            {
+                StartCoroutine(Transition(other.gameObject));
+            }
+           else
+            {
+                UpdatePortalActivator(other.gameObject);
+            }
+        }
+
 
         public void ActivatePortal(GameObject portalActivator)
         {

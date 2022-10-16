@@ -88,6 +88,7 @@ namespace RPG.Combat
 
         public Weapon EquipWeapon(WeaponConfig weaponConfig)
         {
+            Debug.Log("Fighting EquipWeapon: " + weaponConfig.DisplayName);
             currentWeaponConfig = weaponConfig;
             Animator animator = GetComponent<Animator>();
             currentWeapon = currentWeaponConfig.Spawn(rightHandTransform, leftHandTransform, animator);
@@ -96,6 +97,7 @@ namespace RPG.Combat
 
         private void UpdateWeapon()
         {
+            Debug.Log("Fighting UpdateWeapon: ");
             var weaponConfig = weaponStore.GetActiveWeapon() as WeaponConfig;
             if (weaponConfig != null)
             {

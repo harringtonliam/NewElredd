@@ -6,6 +6,7 @@ using RPG.Core;
 using RPG.Movement;
 using System;
 using RPG.Attributes;
+using RPG.SceneManagement;
 
 namespace RPG.Control
 {
@@ -23,6 +24,7 @@ namespace RPG.Control
         [SerializeField] float patrolSpeedFraction = 0.2f;
         [SerializeField] float shoutDistance = 5f;
         [SerializeField] GameObject combatTargetGameObject;
+        [SerializeField] InScenePortal targetPortal;
 
         GameObject player;
         Mover mover;
@@ -65,9 +67,12 @@ namespace RPG.Control
 
             if (InteractWithCombat()) return;
             if (InteractWithSuspicsion()) return;
+            if (InteractWithInScenePortal()) return;
             if (InteractWithPatrolPath()) return;
             if (InteractWithGuardPosition()) return;
         }
+
+
 
         public void Aggrevate()
         {
@@ -102,6 +107,11 @@ namespace RPG.Control
         public void SetCombatTarget(GameObject target)
         {
             combatTargetGameObject = target;
+        }
+
+        public void SetTargetInScenePortal(InScenePortal inScenePortal)
+        {
+            targetPortal = inScenePortal;
         }
 
         private bool InteractWithPatrolPath()
@@ -191,6 +201,33 @@ namespace RPG.Control
                 fighter.Cancel();
                 return false;
             }
+        }
+
+        private bool InteractWithInScenePortal()
+        {
+            if (targetPortal == null) return false;
+            if (AtPortal())
+            {
+                targetPortal.ActivatePortal(gameObject);
+                targetPortal = null;
+                return false;
+            }
+            mover.StartMovementAction(targetPortal.transform.position, patrolSpeedFraction);
+            return true;
+        }
+
+        private bool AtPortal()
+        {
+            float distanceToPortal = Vector3.Distance(transform.position, targetPortal.transform.position);
+            if (distanceToPortal <= waypointTolerance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         private void AggrevateNearbyEnemies()
