@@ -24,6 +24,8 @@ namespace RPG.Control
 
         [SerializeField] CursorMapping[] cursorMappings = null;
         [SerializeField] float raycastRadius = 0.25f;
+        [SerializeField] bool isSelected = true;
+        [SerializeField] Transform selectedVisual;
 
 
         Mover mover;
@@ -31,11 +33,13 @@ namespace RPG.Control
         private void Awake()
         {
              mover = GetComponent<Mover>();
+            SetSelected(false);
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (!isSelected) return;
             if (InteractWithUI()) return;
 
             if (GetComponent<Health>().IsDead)
@@ -48,6 +52,15 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
 
             SetCursorType(CursorType.None);
+        }
+
+        public void SetSelected(bool selected)
+        {
+            isSelected = selected;
+            if (selectedVisual != null)
+            {
+                selectedVisual.GetComponent<MeshRenderer>().enabled = selected;
+            }
         }
 
         public void PlayerDead()
