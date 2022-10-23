@@ -10,7 +10,7 @@ using UnityEngine.AI;
 
 namespace RPG.Control
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IRaycastable
     {
 
 
@@ -33,25 +33,26 @@ namespace RPG.Control
         private void Awake()
         {
              mover = GetComponent<Mover>();
-            SetSelected(false);
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!isSelected) return;
             if (InteractWithUI()) return;
+
+            if (!isSelected) return;
 
             if (GetComponent<Health>().IsDead)
             {
-                SetCursorType(CursorType.None);
+                //SetCursorType(CursorType.None);
                 return;
             }
 
-            if (InteractWithComponent()) return;
-            if (InteractWithMovement()) return;
+            //if (InteractWithComponent()) return;
+            //TODO  Because InteractWithComponent is happening in mouse controller InteractWithMovement is cancelling the previous action straight away
+            //if (InteractWithMovement()) return;
 
-            SetCursorType(CursorType.None);
+            //SetCursorType(CursorType.None);
         }
 
         public void SetSelected(bool selected)
@@ -72,12 +73,12 @@ namespace RPG.Control
             }
         }
 
-
-        private void SetCursorType(CursorType cursorType)
-        {
-            CursorMapping cursorMapping = GetCursorMapping(cursorType);
-            Cursor.SetCursor(cursorMapping.texture2D, cursorMapping.hotspot, CursorMode.Auto);
-        }
+        //TODO Remove this.  onece MouseController is finished
+        //private void SetCursorType(CursorType cursorType)
+        //{
+        //    CursorMapping cursorMapping = GetCursorMapping(cursorType);
+        //    Cursor.SetCursor(cursorMapping.texture2D, cursorMapping.hotspot, CursorMode.Auto);
+        //}
 
         private CursorMapping GetCursorMapping(CursorType cursorType)
         {
@@ -91,34 +92,38 @@ namespace RPG.Control
             return new CursorMapping();
         }
 
+
+
         private bool InteractWithUI()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                SetCursorType(CursorType.UI);
-            }
+            //if (EventSystem.current.IsPointerOverGameObject())
+            //{
+            //    SetCursorType(CursorType.UI);
+            //}
 
             return EventSystem.current.IsPointerOverGameObject();
         }
 
-        private bool InteractWithComponent()
-        {
 
-            RaycastHit[] hits = RaycastAllSorted();
-            foreach (var hit in hits)
-            {
-                IRaycastable[] raycastables = hit.collider.gameObject.GetComponents<IRaycastable>();
-                foreach (var raycastable in raycastables)
-                {
-                    if (raycastable.HandleRaycast(this))
-                    {
-                        SetCursorType(raycastable.GetCursorType());
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
+        //TODO: Renove this
+        //private bool InteractWithComponent()
+        //{
+
+        //    RaycastHit[] hits = RaycastAllSorted();
+        //    foreach (var hit in hits)
+        //    {
+        //        IRaycastable[] raycastables = hit.collider.gameObject.GetComponents<IRaycastable>();
+        //        foreach (var raycastable in raycastables)
+        //        {
+        //            if (raycastable.HandleRaycast(this))
+        //            {
+        //                //SetCursorType(raycastable.GetCursorType());
+        //                return true;
+        //            }
+        //        }
+        //    }
+        //    return false;
+        //}
 
         RaycastHit[] RaycastAllSorted()
         {
@@ -147,7 +152,7 @@ namespace RPG.Control
                 {
                     mover.StartMovementAction(target, 1f); ;
                 }
-                SetCursorType(CursorType.Movement);
+                //SetCursorType(CursorType.Movement);
                 return true;
             }
             return false;
@@ -174,6 +179,25 @@ namespace RPG.Control
             return Camera.main.ScreenPointToRay(Input.mousePosition);
         }
 
-        
+        public CursorType GetCursorType()
+        {
+            if (GetComponent<Health>().IsDead)
+            {
+                return CursorType.None;
+            }
+
+            return CursorType.SelectPlayer;
+        }
+
+        public RaycastableReturnValue HandleRaycast(PlayerController playerController)
+        {
+
+            return RaycastableReturnValue.FirstPlayerCharacter;
+        }
+
+        public void HandleActivation(PlayerController playerController)
+        {
+            //TODO.  Set follow cammera on this player
+        }
     }
 }

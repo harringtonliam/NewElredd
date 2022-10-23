@@ -50,26 +50,32 @@ namespace RPG.DialogueControl
         }
 
      
-        public bool HandleRaycast(PlayerController callingController)
+        public RaycastableReturnValue HandleRaycast(PlayerController callingController)
         {
             if (dialogue == null)
             {
-                return false;
+                return RaycastableReturnValue.NoAction;
             }
 
             if(IsHostile())
             {
-                return false; ;
+                return RaycastableReturnValue.NoAction; 
             }
 
-            if (Input.GetMouseButtonDown(0))
-            {
+            //if (Input.GetMouseButtonDown(0))
+            //{
 
-                PlayerConversant playerConversant = callingController.GetComponent<PlayerConversant>();
-                playerConversant.StartDialogue(this, dialogue);
+            //    PlayerConversant playerConversant = callingController.GetComponent<PlayerConversant>();
+            //    playerConversant.StartDialogue(this, dialogue);
    
-            }
-            return true;
+            //}
+            return RaycastableReturnValue.FirstPlayerCharacter;
+        }
+
+        public void HandleActivation(PlayerController callingController)
+        {
+            PlayerConversant playerConversant = callingController.GetComponent<PlayerConversant>();
+            playerConversant.StartDialogue(this, dialogue);
         }
 
         private bool IsHostile()

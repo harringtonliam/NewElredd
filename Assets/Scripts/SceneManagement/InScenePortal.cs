@@ -95,19 +95,29 @@ namespace RPG.SceneManagement
                 return CursorType.Pickup;
         }
 
-        public bool HandleRaycast(PlayerController playerController)
+        public RaycastableReturnValue HandleRaycast(PlayerController playerController)
         {
-            if (!playerUsablePortal) return false;
-            if (Input.GetMouseButtonDown(0))
-            {
-                PortalActivator portalActivator = playerController.transform.GetComponent<PortalActivator>();
-                if (portalActivator != null)
-                {
-                    portalActivator.StartPortalActivation(gameObject);
-                }
-            }
-            return true;
+            if (!playerUsablePortal) return RaycastableReturnValue.NoAction;
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    PortalActivator portalActivator = playerController.transform.GetComponent<PortalActivator>();
+            //    if (portalActivator != null)
+            //    {
+            //        portalActivator.StartPortalActivation(gameObject);
+            //    }
+            //}
+            return RaycastableReturnValue.AllPlayerCharacters;
         }
+
+        public void HandleActivation(PlayerController playerController)
+        {
+            PortalActivator portalActivator = playerController.transform.GetComponent<PortalActivator>();
+            if (portalActivator != null)
+            {
+                portalActivator.StartPortalActivation(gameObject);
+            }
+        }
+
     }
 
 

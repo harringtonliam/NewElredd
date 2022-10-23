@@ -67,17 +67,26 @@ namespace RPG.InventoryControl
             }
         }
 
-        public bool HandleRaycast(PlayerController playerController)
+        public RaycastableReturnValue HandleRaycast(PlayerController playerController)
         {
-            if (Input.GetMouseButtonDown(0))
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    PickupRetriever pickupRetriever = playerController.transform.GetComponent<PickupRetriever>();
+            //    if (pickupRetriever != null)
+            //    {
+            //        pickupRetriever.StartPickupRetrieval(gameObject);
+            //    }
+            //}
+            return RaycastableReturnValue.FirstPlayerCharacter;
+        }
+
+        public void  HandleActivation(PlayerController playerController)
+        {
+            PickupRetriever pickupRetriever = playerController.transform.GetComponent<PickupRetriever>();
+            if (pickupRetriever != null)
             {
-                PickupRetriever pickupRetriever = playerController.transform.GetComponent<PickupRetriever>();
-                if (pickupRetriever != null)
-                {
-                    pickupRetriever.StartPickupRetrieval(gameObject);
-                }
+                pickupRetriever.StartPickupRetrieval(gameObject);
             }
-            return true;
         }
 
 
