@@ -23,7 +23,6 @@ namespace RPG.UI.Dragging
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            Debug.Log("DragItem OnBeginDrag" + gameObject.name);
             startPosition = transform.position;
             originalParent = transform.parent;
             GetComponent<CanvasGroup>().blocksRaycasts = false;

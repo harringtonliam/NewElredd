@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.UI.Dragging;
 using RPG.InventoryControl;
 using RPG.Combat;
+using RPG.Control;
 
 
 namespace RPG.UI.InventoryControl
@@ -18,10 +19,24 @@ namespace RPG.UI.InventoryControl
         AmmunitionStore store;
 
         // LIFECYCLE METHODS
-        private void Awake()
+        void OnDisable()
         {
-            store = GameObject.FindGameObjectWithTag("Player").GetComponent<AmmunitionStore>();
+            try
+            {
+                store.storeUpdated -= UpdateIcon;
+            }
+            catch
+            {
+                Debug.Log("AmmunitionSlotUI unable to -= storeUpdated");
+            }
+        }
+
+        void OnEnable()
+        {
+            var player = PlayerController.GetFirstSelectedPlayer();
+            store = player.GetComponent<AmmunitionStore>();
             store.storeUpdated += UpdateIcon;
+            UpdateIcon();
         }
 
         // PUBLIC

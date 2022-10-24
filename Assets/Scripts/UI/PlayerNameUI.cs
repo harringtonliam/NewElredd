@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using RPG.Attributes;
+using RPG.Control;
 
 namespace RPG.UI
 {
@@ -12,19 +13,19 @@ namespace RPG.UI
 
         GameObject playerCharacterGameObject = null;
 
-
-        void Start()
+        private void OnEnable()
         {
-            playerCharacterGameObject = GameObject.FindGameObjectWithTag("Player");
+            playerCharacterGameObject = PlayerController.GetFirstSelectedPlayer();
             RedrawUI();
         }
 
         public void RedrawUI()
         {
+            Debug.Log("Player name ui redraw");
             CharacterSheet characterSheet = playerCharacterGameObject.GetComponent<CharacterSheet>();
             if (characterSheet != null)
             {
-                nameText.text = characterSheet.CharacterName; ;
+                nameText.text = characterSheet.CharacterName; 
             }
 
         }

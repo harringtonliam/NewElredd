@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 using RPG.Movement;
 
 namespace RPG.Control
@@ -32,6 +33,8 @@ namespace RPG.Control
         // Update is called once per frame
         void Update()
         {
+            if (InteractWithUI()) return;
+
             if (Input.GetMouseButtonDown(0))
             {
                 InteractWithPlayerSelection(ControlKeyPressed());
@@ -40,6 +43,16 @@ namespace RPG.Control
             if (InteractWithMovement()) return;
 
             SetCursorType(CursorType.None);
+        }
+
+        private bool InteractWithUI()
+        {
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                SetCursorType(CursorType.UI);
+            }
+
+            return EventSystem.current.IsPointerOverGameObject();
         }
 
         private bool InteractWithComponent()

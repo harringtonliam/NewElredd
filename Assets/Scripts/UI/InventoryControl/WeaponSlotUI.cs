@@ -4,6 +4,7 @@ using UnityEngine;
 using RPG.InventoryControl;
 using RPG.UI.Dragging;
 using RPG.Combat;
+using RPG.Control;
 
 namespace RPG.UI.InventoryControl
 {
@@ -18,10 +19,23 @@ namespace RPG.UI.InventoryControl
         WeaponStore weaponStore;
 
         // LIFECYCLE METHODS
-        private void Awake()
+        void OnDisable()
         {
-            weaponStore = GameObject.FindGameObjectWithTag("Player").GetComponent<WeaponStore>();
+            try
+            {
+                weaponStore.storeUpdated -= UpdateIcon;
+            }
+            catch
+            {
+                Debug.Log("WeaponSlotUI unable to -= storeUpdated");
+            }
+        }
+
+        void OnEnable()
+        {
+            weaponStore = PlayerController.GetFirstSelectedPlayer().GetComponent<WeaponStore>();
             weaponStore.storeUpdated += UpdateIcon;
+            UpdateIcon();
         }
 
         // PUBLIC

@@ -86,7 +86,11 @@ namespace RPG.DialogueControl
             currentNode = rootNodes[0];
             WriteToConsole(currentNode);
             TriggerEnterAction();
-            onConversationUpdated();
+            if (onConversationUpdated != null)
+            {
+                onConversationUpdated();
+            }
+
         }
 
         public void StartDialogue(AIConversant newConverstant, Dialogue newDialogue)
@@ -134,7 +138,15 @@ namespace RPG.DialogueControl
 
         internal string GetCurrentConversantName()
         {
-            return currentConversant.ConversantName;
+            try
+            {
+                return currentConversant.ConversantName;
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            
         }
 
         internal Sprite GetCurrentConversantPortrait()

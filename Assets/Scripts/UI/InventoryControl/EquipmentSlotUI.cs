@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using RPG.InventoryControl;
 using RPG.UI.Dragging;
+using RPG.Control;
 
 namespace RPG.UI.InventoryControl
 {
@@ -14,17 +15,34 @@ namespace RPG.UI.InventoryControl
 
         Equipment playerEquipment;
 
-        private void Awake()
-        {
-            var player = GameObject.FindGameObjectWithTag("Player");
-            playerEquipment = player.GetComponent<Equipment>();
-            playerEquipment.equipmentUpdated += RedrawUI;
-        }
+
 
         void Start()
         {
+           
+        }
+
+        void OnDisable()
+        {
+            try
+            {
+                playerEquipment.equipmentUpdated -= RedrawUI;
+            }
+            catch
+            {
+                Debug.Log("EquipmentSlotUI unable to -= equipmentUpdated");
+            }
+        }
+
+        void OnEnable()
+        {
+            var player = PlayerController.GetFirstSelectedPlayer();
+            playerEquipment = player.GetComponent<Equipment>();
+            playerEquipment.equipmentUpdated += RedrawUI;
             RedrawUI();
         }
+
+   
 
 
         public void AddItems(InventoryItem item, int number)

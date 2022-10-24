@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.InventoryControl;
+using RPG.Control;
 using System;
 
 namespace RPG.UI.InventoryControl
@@ -34,6 +35,25 @@ namespace RPG.UI.InventoryControl
             Redraw();
         }
 
+        void OnDisable()
+        {
+            try
+            {
+                objectInventory.inventoryUpdated -= Redraw;
+            }
+            catch
+            {
+                Debug.Log("Inventory unable to -= inventoryUpdated");
+            }
+        }
+
+        void OnEnable()
+        {
+            SelectedPlayerInventory();
+            objectInventory.inventoryUpdated += Redraw;
+            Redraw();
+        }
+
         private void Redraw()
         {
             foreach (Transform child in transform)
@@ -49,8 +69,12 @@ namespace RPG.UI.InventoryControl
         }
 
 
+        private void SelectedPlayerInventory()
+        {
+            objectInventory = PlayerController.GetFirstSelectedPlayer().GetComponent<Inventory>();
+        }
 
- 
+
     }
 
 

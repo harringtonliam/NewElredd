@@ -28,7 +28,22 @@ namespace RPG.Control
         [SerializeField] Transform selectedVisual;
 
 
+        public bool IsSelected { get { return isSelected; } }
+
         Mover mover;
+
+        public static GameObject GetFirstSelectedPlayer()
+        {
+            GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in players)
+            {
+                if (player.GetComponent<PlayerController>().IsSelected)
+                {
+                    return player;
+                }
+            }
+            return players[0];
+        }
 
         private void Awake()
         {
@@ -63,6 +78,8 @@ namespace RPG.Control
                 selectedVisual.GetComponent<MeshRenderer>().enabled = selected;
             }
         }
+
+       
 
         public void PlayerDead()
         {
